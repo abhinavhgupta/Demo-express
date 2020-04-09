@@ -16,11 +16,14 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/Home', (req, res) => res.send('<h1>Hello World!</h1>'))
 
 app.get('/books', (req, res) => {
+    var book = books.slice(0, req.query.num)
+    res.send(book)
+})
+
+app.get('/books', (req, res) => {
     books = books.filter(book => book != req.body.book);
     res.send(books)
 })
-
-
 
 app.post('/books', function (req, res) {
     books.push(req.body.book)
